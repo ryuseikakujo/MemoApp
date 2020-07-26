@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "jsx-ally",
+    "import"
+  ],
+  "rules": {
+    "react/prefer-stateless-function": 0
+  },
+  "parser": "babel-eslint"
+}
