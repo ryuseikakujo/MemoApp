@@ -8,7 +8,7 @@ export class MemoListScreen extends Component {
     return (
       <View style={styles.container}>
         <MemoList />
-        <CircleButton>+</CircleButton>
+        <CircleButton name="plus" />
       </View>
     );
   }
