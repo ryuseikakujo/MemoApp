@@ -3,12 +3,15 @@ import { View, StyleSheet } from "react-native";
 import { CircleButton } from "../elements";
 import { MemoList } from "../components";
 
-export class MemoListScreen extends Component {
+class MemoListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MemoList />
-        <CircleButton name="plus" />
+        <MemoList navigation={this.props.navigation} />
+        <CircleButton
+          name="plus"
+          onPress={() => this.props.navigation.navigate("MemoEdit")}
+        />
       </View>
     );
   }
@@ -18,6 +21,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
+    backgroundColor: "#fffdf6",
   },
 });
 
