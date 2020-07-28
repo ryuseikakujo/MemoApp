@@ -10,8 +10,8 @@ import {
 
 class LoginScreen extends Component {
   state = {
-    email: "",
-    password: "",
+    email: "user1@gmail.com",
+    password: "aaaaaa",
   };
 
   handleSubmit() {
@@ -19,7 +19,7 @@ class LoginScreen extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((result) => {
-        this.props.navigation.navigate("Home", { currentUser: result.user });
+        this.props.navigation.navigate("Home");
       })
       .catch((error) => {
         console.log("error", error);

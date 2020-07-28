@@ -14,15 +14,16 @@ class MemoCreateScreen extends Component {
   };
 
   handlePress() {
-    const { params } = this.props.navigation.state;
     const db = firebase.firestore();
-    db.collection(`users/${params.currentUser.uid}/memos`)
+    const { currentUser } = firebase.auth();
+    db.collection(`users/${currentUser.uid}/memos`)
       .add({
         body: this.state.body,
         createdOn: new Date(),
       })
       .then((docRef) => {
         console.log(docRef.id);
+        this.props.navigation.goBack();
       })
       .catch((error) => {
         console.log(error);
