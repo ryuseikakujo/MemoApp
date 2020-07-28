@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import firebase from "firebase";
 import {
   StyleSheet,
   View,
@@ -14,7 +15,15 @@ class LoginScreen extends Component {
   };
 
   handleSubmit() {
-    // {this.props.navigation.navigator('Home')}
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((result) => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   }
 
   render() {
@@ -25,10 +34,10 @@ class LoginScreen extends Component {
           style={styles.input}
           value={this.state.email}
           autoCapitalize="none"
-          autoCorrect="false"
+          autoCorrect={false}
           placeholder="Email Address"
           keyboardType="email-address"
-          onChange={(text) => {
+          onChangeText={(text) => {
             this.setState({ email: text });
           }}
         />
@@ -36,10 +45,10 @@ class LoginScreen extends Component {
           style={styles.input}
           value={this.state.password}
           autoCapitalize="none"
-          autoCorrect="false"
+          autoCorrect={false}
           placeholder="Password"
           secureTextEntry
-          onChange={(text) => {
+          onChangeText={(text) => {
             this.setState({ password: text });
           }}
         />
