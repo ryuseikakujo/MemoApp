@@ -6,10 +6,13 @@ import {
   SignupScreen,
   MemoDetailScreen,
   MemoEditScreen,
+  MemoCreateScreen,
   LoginScreen,
 } from "./src/screens";
 
 import ENV from "./env.json";
+
+require("firebase/firestore");
 
 const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
@@ -28,6 +31,7 @@ const App = createStackNavigator(
     Home: { screen: MemoListScreen },
     MemoDetail: { screen: MemoDetailScreen },
     MemoEdit: { screen: MemoEditScreen },
+    MemoCreate: { screen: MemoCreateScreen },
   },
   {
     defaultNavigationOptions: {

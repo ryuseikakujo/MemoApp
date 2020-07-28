@@ -19,7 +19,7 @@ class LoginScreen extends Component {
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then((result) => {
-        this.props.navigation.navigate("Home");
+        this.props.navigation.navigate("Home", { currentUser: result.user });
       })
       .catch((error) => {
         console.log("error", error);
