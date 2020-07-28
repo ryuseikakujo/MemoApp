@@ -2,17 +2,31 @@ import React, { Component } from "react";
 import { StyleSheet, View, Text, FlatList } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
+const dateString = (date) => {
+  if (date == null) {
+    return "";
+  }
+  const str = date.toDate().toISOString();
+  return str.split("T")[0] + "  " + str.split("T")[1].split(".")[0];
+};
+
 export class MemoList extends Component {
   renderMemo({ item }) {
     return (
       <TouchableHighlight
         onPress={() => {
-          this.props.navigation.navigate("MemoDetail");
+          this.props.navigation.navigate("MemoDetail", { memo: item });
         }}
       >
         <View style={styles.memoListItem}>
-          <Text style={styles.memoTitle}>{item.body}</Text>
-          <Text style={styles.memoDate}>2018</Text>
+          <Text style={styles.memoTitle}>
+            {item.body
+              ? item.body.length > 49
+                ? item.body.substring(0, 49) + "..."
+                : item.body
+              : null}
+          </Text>
+          <Text style={styles.memoDate}>{dateString(item.createdOn)}</Text>
         </View>
       </TouchableHighlight>
     );
