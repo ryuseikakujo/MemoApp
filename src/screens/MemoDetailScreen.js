@@ -37,8 +37,8 @@ class MemoDetailScreen extends Component {
             <View>
               <Text style={styles.memoHeaderTitle}>
                 {memo.body
-                  ? memo.body.length > 42
-                    ? memo.body.substring(0, 42) + "..."
+                  ? memo.body.length > 40
+                    ? memo.body.substring(0, 40) + "..."
                     : memo.body
                   : null}
               </Text>

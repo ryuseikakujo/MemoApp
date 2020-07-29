@@ -21,8 +21,8 @@ export class MemoList extends Component {
         <View style={styles.memoListItem}>
           <Text style={styles.memoTitle}>
             {item.body
-              ? item.body.length > 49
-                ? item.body.substring(0, 49) + "..."
+              ? item.body.length > 45
+                ? item.body.substring(0, 45) + "..."
                 : item.body
               : null}
           </Text>

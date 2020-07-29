@@ -6,7 +6,9 @@ import {
   Text,
   TextInput,
   TouchableHighlight,
+  TouchableOpacity,
 } from "react-native";
+import { StackActions, NavigationActions } from "react-navigation";
 
 class LoginScreen extends Component {
   state = {
@@ -18,12 +20,18 @@ class LoginScreen extends Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((result) => {
-        this.props.navigation.navigate("Home");
+      .then(() => {
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: "Home" })],
+        });
+        this.props.navigation.dispatch(resetAction);
       })
-      .catch((error) => {
-        console.log("error", error);
-      });
+      .catch(() => {});
+  }
+
+  handlePress() {
+    this.props.navigation.navigate("Signup");
   }
 
   render() {
@@ -59,6 +67,12 @@ class LoginScreen extends Component {
         >
           <Text style={styles.buttonTitle}>ログインする</Text>
         </TouchableHighlight>
+        <TouchableOpacity
+          style={styles.signup}
+          onPress={this.handlePress.bind(this)}
+        >
+          <Text style={styles.signupText}>メンバー登録をする</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -96,6 +110,13 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: "white",
     fontSize: 18,
+  },
+  signup: {
+    marginTop: 16,
+    alignSelf: "center",
+  },
+  signupText: {
+    fontSize: 16,
   },
 });
 

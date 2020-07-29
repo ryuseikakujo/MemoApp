@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableHighlight,
 } from "react-native";
+import { StackActions, NavigationActions } from "react-navigation";
 
 class SignupScreen extends Component {
   state = {
@@ -19,16 +20,13 @@ class SignupScreen extends Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        this.props.navigation.navigate("Home");
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: "Home" })],
+        });
+        this.props.navigation.dispatch(resetAction);
       })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // ユーザー情報は result の中に入っています。
-    // .then((result) => {
-    //   console.log('success!', result.user);
-    // })
+      .catch(() => {});
   }
 
   render() {
