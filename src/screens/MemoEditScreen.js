@@ -51,6 +51,7 @@ class MemoEditScreen extends Component {
           style={styles.memoEditInput}
           multiline
           value={this.state.body}
+          textAlignVertical="top"
           onChangeText={(text) => {
             this.setState({ body: text });
           }}
