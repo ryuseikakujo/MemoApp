@@ -36,7 +36,7 @@ const App = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      headerTitle: "Memot",
+      headerTitle: "Memott",
       headerTintColor: "white",
       headerBackTitle: null,
       headerBackTitleVisible: false,
